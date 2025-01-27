@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
+import { ContactRoutingModule } from './contact-routing.module';
+import { ContactComponent } from './pages/contact/contact.component';
+import { FormContactComponent } from './components/form-contact/form-contact.component';
+import { SharedModule } from '../shared/shared.module';
+import { IonContent } from '@ionic/angular/standalone';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ContactComponent,
+    FormContactComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    ContactRoutingModule,
+    IonContent,
+    SharedModule
   ]
 })
+
 export class ContactModule { }
