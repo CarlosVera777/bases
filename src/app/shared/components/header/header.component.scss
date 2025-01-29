@@ -1,7 +1,11 @@
 .menu {
+    display: flex;
     position: relative;
     padding: 0px 10px;
     border-bottom: 1px solid black;
+    position: sticky;
+    top: 0px;
+    background: aliceblue;
 }
 
 .iconos {
