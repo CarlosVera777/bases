@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Models } from 'src/app/models/models';
 
 @Component({
   selector: 'app-article',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent  implements OnInit {
-  article: IArticulo;
+  article: Models.Home.IArticulo;
   
   constructor() { 
     setTimeout(() => {
@@ -18,7 +19,7 @@ export class ArticleComponent  implements OnInit {
   ngOnInit() {}
 
   loadArticulo() {
-    const data: IArticulo = {
+    const data: Models.Home.IArticulo = {
       title: 'Angular [DINAMICO]',
       description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.' +
       'Quae rem maxime ullam enim eveniet magni, sed quo reprehenderit' +
@@ -30,14 +31,4 @@ export class ArticleComponent  implements OnInit {
     }
     this.article = data;
   }
-}
-
-interface IArticulo {
-  title: string;
-  description: string;
-  image: {
-    url: string;
-    desc: string;
-  }
-  id?: string;
 }

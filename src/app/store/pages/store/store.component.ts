@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Models } from 'src/app/models/models';
 
 @Component({
   selector: 'app-store',
@@ -8,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent  implements OnInit {
 
+  carrito: Models.Store.ICarrito;
+  items: Models.Store.IItem[];
+  pedidos: Models.Store.IPedido[];
+
   constructor() { }
 
   ngOnInit() {}
-
 }
