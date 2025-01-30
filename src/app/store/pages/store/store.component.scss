@@ -3,3 +3,29 @@
     padding: 10px;
     border: 1px solid black;
 }
+.button-remove {
+    background: red;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border: 1px solid gray;
+}
+.button-add {
+    background: greenyellow;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border: 1px solid gray;
+}
+.content-carrito {
+    display: flex;
+    position: sticky;
+    top: 60px;
+    justify-content: end;
+}
+.detalle-carrito {
+    background: orange;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}

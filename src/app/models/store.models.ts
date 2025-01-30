@@ -5,8 +5,14 @@ export namespace ModelsStore {
         description: string;
         price: number;
         image?: string;
-    }
-    
+    }  
     export interface IPedido { }
-    export interface ICarrito { }
+    export interface ICarrito {
+        total: number;
+        cantidadTotal: number;
+        items: {
+            item: IItem;
+            cant: number;
+        }[]
+    }
 }

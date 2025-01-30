@@ -11,9 +11,11 @@ export class StoreComponent  implements OnInit {
 
   items: Models.Store.IItem[];
   cargando: boolean = true;
+  carrito: Models.Store.ICarrito;
 
   constructor() {
     this.loadItems();
+    this.initCarrito();
   }
 
   ngOnInit() {}
@@ -24,6 +26,74 @@ export class StoreComponent  implements OnInit {
       this.cargando = false;
       console.log('items ->', this.items);
     }, 2000);
+  }
+
+  initCarrito() {
+    this.carrito = {
+      total: 0,
+      cantidadTotal: 0,
+      items: []
+    }
+    console.log("this.carrito ->", this.carrito);
+  }
+
+  addItem(item: Models.Store.IItem, index: number) {
+    console.log("addItem",item.price, index);
+    let exist: boolean = false;
+    this.carrito.items.every((itemExist) => {
+      if(itemExist.item.id == item.id){
+        itemExist.cant++;
+        exist = true;
+        return false;
+      }
+      return true;
+    });
+    if(!exist){
+      this.carrito.items.push({
+        item: item,
+        cant: 1
+      });
+    }
+    this.getTotalCarrito();
+  }
+
+  getTotalCarrito(){
+    let total = 0;
+    let cantidadTotal = 0;
+    this.carrito.items.forEach(producto => {
+      total += (producto.item.price * producto.cant);
+      cantidadTotal += producto.cant;
+    });
+    this.carrito.total = total;
+    this.carrito.cantidadTotal = cantidadTotal;
+    console.log("this.carrito->", this.carrito);
+  }
+
+  removeItem(item: Models.Store.IItem) {
+    console.log("removeItem ->", item);
+    const existIndex = this.carrito.items.findIndex(itemExist => {
+      if(itemExist.item.id == item.id){
+        return true;
+      }
+      return false;
+    });
+    if(existIndex >= 0){
+      console.log("exist", existIndex);
+      if(this.carrito.items[existIndex].cant == 1){
+        this.carrito.items.splice(existIndex, 1);
+      }else{
+        this.carrito.items[existIndex].cant--;
+      }
+    }
+    this.getTotalCarrito();
+  }
+
+  validateInput() {
+    console.log("validateInput()");
+  }
+
+  updateInput(ev: any) {
+    console.log("updateInput() -> ", ev);
   }
 }
 
