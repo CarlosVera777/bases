@@ -12,6 +12,7 @@ export class StoreComponent  implements OnInit {
   items: Models.Store.IItem[];
   cargando: boolean = true;
   carrito: Models.Store.ICarrito;
+  tituloPagina: string = "Tienda";
 
   constructor() {
     this.loadItems();
@@ -37,8 +38,8 @@ export class StoreComponent  implements OnInit {
     console.log("this.carrito ->", this.carrito);
   }
 
-  addItem(item: Models.Store.IItem, index: number) {
-    console.log("addItem",item.price, index);
+  addItemPadre(item: Models.Store.IItem) {
+    console.log("addItemPadre()", item);
     let exist: boolean = false;
     this.carrito.items.every((itemExist) => {
       if(itemExist.item.id == item.id){
@@ -57,20 +58,8 @@ export class StoreComponent  implements OnInit {
     this.getTotalCarrito();
   }
 
-  getTotalCarrito(){
-    let total = 0;
-    let cantidadTotal = 0;
-    this.carrito.items.forEach(producto => {
-      total += (producto.item.price * producto.cant);
-      cantidadTotal += producto.cant;
-    });
-    this.carrito.total = total;
-    this.carrito.cantidadTotal = cantidadTotal;
-    console.log("this.carrito->", this.carrito);
-  }
-
-  removeItem(item: Models.Store.IItem) {
-    console.log("removeItem ->", item);
+  removeItemPadre(item: Models.Store.IItem){
+    console.log("removeItemPadre()", item);
     const existIndex = this.carrito.items.findIndex(itemExist => {
       if(itemExist.item.id == item.id){
         return true;
@@ -88,10 +77,21 @@ export class StoreComponent  implements OnInit {
     this.getTotalCarrito();
   }
 
+  getTotalCarrito(){
+    let total = 0;
+    let cantidadTotal = 0;
+    this.carrito.items.forEach(producto => {
+      total += (producto.item.price * producto.cant);
+      cantidadTotal += producto.cant;
+    });
+    this.carrito.total = total;
+    this.carrito.cantidadTotal = cantidadTotal;
+    console.log("this.carrito->", this.carrito);
+  }
+
   validateInput() {
     console.log("validateInput()");
   }
-
   updateInput(ev: any) {
     console.log("updateInput() -> ", ev);
   }

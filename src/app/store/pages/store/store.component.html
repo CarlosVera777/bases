@@ -1,6 +1,5 @@
 <ion-content>
-  <app-header></app-header>  
-  <h1>Store</h1>
+  <app-header [titulo]="tituloPagina"></app-header>  
 
   @if(!cargando){
     <div class="content-carrito">
@@ -8,22 +7,14 @@
         <p class="detalle-carrito">Cant: {{carrito.cantidadTotal}} | Total: ${{carrito.total.toFixed(2)}}</p>
       }
     </div>  
-
+    
     @for (item of items; track $index) {
-      <div class="content-item">
-        <div> <h3>{{item.name}}</h3> </div>
-        <div> <p>{{item.description}}</p> </div>
-        @if(item.image){
-          <div> <img [src]="item.image" [alt]="item.name"> </div>
-        }@else {
-          <img src="/assets/images/default.webp">
-        }
-        <div> <p style="text-align: end;">${{item.price}}</p> </div>
-        <div style="text-align: end;">
-          <button (click)="addItem(item, $index)" class="button-add">+</button>
-          <button (click)="removeItem(item)" class="button-remove">-</button>
-        </div>
-      </div>
+      <app-product-detail 
+        [item]="item" [index]="$index"
+        (add)="addItemPadre(item)"
+        (remove)="removeItemPadre(item)"
+      >
+      </app-product-detail>
     } @empty {
       <p>No hay articulos</p>
     }
@@ -32,10 +23,13 @@
     <p style="text-align: center;">cargando...</p>
   }
 
-  <div><input (keyup)="validateInput()"/></div>
-  <div><input (keydown)="updateInput($event)"></div>
+  <div>
+    <input (keyup)="validateInput()"/>
+  </div>
+  <div>
+    <input (keydown)="updateInput($event)">
+  </div>
   <div style="margin: 60px;"></div>
   
-  <!-- <app-product-detail></app-product-detail> -->
   <app-footer></app-footer>
 </ion-content>

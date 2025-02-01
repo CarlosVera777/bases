@@ -1,12 +1,17 @@
-<div class="producto">
-  <div>
-    <h3>Titulo del Producto</h3>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore minus
-      delectus aspernatur corrupti mollitia eveniet vero esse quis aperiam tempore.
-    </p>
+@if(item){
+  <div class="content-item">
+    <div> <h3>{{item.name}}</h3> </div>
+    <div> <p>{{item.description}}</p> </div>
+    @if(item.image){
+      <div> <img [src]="item.image" [alt]="item.name"> </div>
+    }@else {
+      <img src="/assets/images/default.webp">
+    }
+    <div> <p style="text-align: end;">${{item.price}}</p> </div>
+    <div style="text-align: end;">
+      <button (click)="addItemHijo()" class="button-add">+</button>
+      <span>{{this.cantxProducto}}</span>
+      <button (click)="removeItemHijo()" class="button-remove">-</button>
+    </div>
   </div>
-  <div style="text-align: end">
-    <button [routerLink]="['/store/item']">View details</button>
-  </div>
-</div>
+}
