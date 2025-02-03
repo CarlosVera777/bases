@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Models } from 'src/app/models/models';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,7 +19,7 @@ export class ProductDetailComponent  implements OnInit {
   carrito: Models.Store.ICarrito;
   cantxProducto: number = 0;
 
-  constructor() { }
+  constructor(private carritoService: CarritoService) { }
 
   ngOnInit() {}
 
@@ -26,6 +27,7 @@ export class ProductDetailComponent  implements OnInit {
     console.log("addItemHijo()");
     this.add.emit();
     this.cantxProducto++;
+    this.carritoService.addItemPadre(this.item);
   }
 
   removeItemHijo(){
@@ -33,6 +35,7 @@ export class ProductDetailComponent  implements OnInit {
     this.remove.emit();
     if(this.cantxProducto>0){
       this.cantxProducto--;
+      this.carritoService.removeItemPadre(this.item);
     }
   }
 }

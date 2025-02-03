@@ -1,51 +1,24 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Models } from 'src/app/models/models';
-import { CarritoService } from 'src/app/services/carrito.service';
+import { Injectable } from '@angular/core';
+import { Models } from '../models/models';
 
-@Component({
-  selector: 'app-store',
-  standalone: false,
-  templateUrl: './store.component.html',
-  styleUrls: ['./store.component.scss'],
+@Injectable({
+  providedIn: 'root'
 })
-export class StoreComponent  implements OnInit {
-
+export class DatabaseService {
   items: Models.Store.IItem[];
-  cargando: boolean = true;
-  carrito: Models.Store.ICarrito;
-  tituloPagina: string = "Tienda";
 
-  // private carritoService = Inject(CarritoService);  //Declarar servicio Opc1
-  constructor(  // Declarar servicio opc2 (Inyeccion)
-    private carritoService: CarritoService 
-  ) {
+  constructor() {
     this.loadItems();
-  }
-
-  ngOnInit() {}
+   }
 
   loadItems() {
     setTimeout(() => {
       this.items = DataDemo;
-      this.cargando = false;
+      // this.cargando = false;
       console.log('items ->', this.items);
-    }, 2000);
+    });
   }
 
-  addItemPadre(item: Models.Store.IItem){
-    this.carrito = this.carritoService.carrito;
-  }
-
-  removeItemPadre(item: Models.Store.IItem){
-    this.carrito = this.carritoService.carrito;
-  }
-  
-  validateInput() {
-    console.log("validateInput()");
-  }
-  updateInput(ev: any) {
-    console.log("updateInput() -> ", ev);
-  }
 }
 
 const DataDemo: Models.Store.IItem[] = [
