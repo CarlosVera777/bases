@@ -29,7 +29,7 @@ export class CarritoService {
   }
 
   addItemPadre(item: Models.Store.IItem) {
-    console.log("addItemPadre()", item);
+    // console.log("addItemPadre()", item);
     let exist: boolean = false;
     this.carrito.items.every((itemExist) => {
       if(itemExist.item.id == item.id){
@@ -49,7 +49,7 @@ export class CarritoService {
   }
 
   removeItemPadre(item: Models.Store.IItem){
-    console.log("removeItemPadre()", item);
+    // console.log("removeItemPadre()", item);
     const existIndex = this.carrito.items.findIndex(itemExist => {
       if(itemExist.item.id == item.id){
         return true;

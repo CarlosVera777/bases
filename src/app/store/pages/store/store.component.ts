@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Models } from 'src/app/models/models';
-import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-store',
@@ -15,20 +14,11 @@ export class StoreComponent  implements OnInit {
   carrito: Models.Store.ICarrito;
   tituloPagina: string = "Tienda";
 
-  // private carritoService = Inject(CarritoService);  //Declarar servicio Opc1
-  constructor(  // Declarar servicio opc2 (Inyeccion)
-    private carritoService: CarritoService 
-  ) {
+  constructor() {
     this.loadItems();
   }
 
-  ngOnInit() {
-    this.carrito = this.carritoService.carrito;
-    this.carritoService.getCarritoChanges().subscribe((changesCarrito) => {
-      console.log("GetCarritoChanges en Store->", changesCarrito);
-      this.carrito = changesCarrito;
-    });
-  }
+  ngOnInit() { }
 
   loadItems() {
     setTimeout(() => {
@@ -36,21 +26,6 @@ export class StoreComponent  implements OnInit {
       this.cargando = false;
       console.log('items ->', this.items);
     }, 2000);
-  }
-
-  addItemPadre(item: Models.Store.IItem){
-    // this.carrito = this.carritoService.carrito;
-  }
-
-  removeItemPadre(item: Models.Store.IItem){
-    // this.carrito = this.carritoService.carrito;
-  }
-  
-  validateInput() {
-    console.log("validateInput()");
-  }
-  updateInput(ev: any) {
-    console.log("updateInput() -> ", ev);
   }
 }
 

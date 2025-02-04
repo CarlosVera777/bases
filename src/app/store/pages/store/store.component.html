@@ -2,18 +2,10 @@
   <app-header [titulo]="tituloPagina"></app-header>  
 
   @if(!cargando){
-    <div class="content-carrito">
-      @if(carrito){
-        <p class="detalle-carrito">Cant: {{carrito.cantidadTotal}} | Total: ${{carrito.total.toFixed(2)}}</p>
-      }
-    </div>  
+    <app-detail-carrito></app-detail-carrito>
     
     @for (item of items; track $index) {
-      <app-product-detail 
-        [item]="item" [index]="$index"
-      >
-        <!-- (add)="addItemPadre(item)" (remove)="removeItemPadre(item)" -->
-      </app-product-detail>
+      <app-product-detail [item]="item"></app-product-detail>
     } @empty {
       <p>No hay articulos</p>
     }
@@ -21,13 +13,6 @@
   @else{
     <p style="text-align: center;">cargando...</p>
   }
-
-  <div>
-    <input (keyup)="validateInput()"/>
-  </div>
-  <div>
-    <input (keydown)="updateInput($event)">
-  </div>
   <div style="margin: 60px;"></div>
   
   <app-footer></app-footer>
