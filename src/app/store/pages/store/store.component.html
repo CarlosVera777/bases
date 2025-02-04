@@ -11,9 +11,8 @@
     @for (item of items; track $index) {
       <app-product-detail 
         [item]="item" [index]="$index"
-        (add)="addItemPadre(item)"
-        (remove)="removeItemPadre(item)"
       >
+        <!-- (add)="addItemPadre(item)" (remove)="removeItemPadre(item)" -->
       </app-product-detail>
     } @empty {
       <p>No hay articulos</p>

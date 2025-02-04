@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Models } from '../models/models';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
+  //Crear sujeto a ser Observable (1.crear fomoso)
+  private carrito$ = new Subject<Models.Store.ICarrito>();
   carrito: Models.Store.ICarrito;
 
   constructor() {
@@ -17,7 +20,12 @@ export class CarritoService {
       cantidadTotal: 0,
       items: []
     }
-    console.log("this.carrito ->", this.carrito);
+    console.log("this.carrito init carritoService ->", this.carrito);
+  }
+
+  getCarritoChanges(){
+    //(2.Crear su red social)
+    return this.carrito$.asObservable();
   }
 
   addItemPadre(item: Models.Store.IItem) {
@@ -69,5 +77,7 @@ export class CarritoService {
     this.carrito.total = total;
     this.carrito.cantidadTotal = cantidadTotal;
     console.log("this.carrito->", this.carrito);
+    //Emitir la transmision(3.emitir nueva publicacion en RS)
+    this.carrito$.next(this.carrito);
   }
 }

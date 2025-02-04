@@ -11,7 +11,11 @@ export class HomeComponent  implements OnInit {
 
   constructor( private carritoService: CarritoService ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.carritoService.getCarritoChanges().subscribe((changesCarrito) => {
+    //   console.log("GetCarritoChanges en home:", changesCarrito);
+    // });
+  }
 
   getCarrito(){
     console.log("Carrito Home:", this.carritoService.carrito);

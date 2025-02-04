@@ -22,7 +22,13 @@ export class StoreComponent  implements OnInit {
     this.loadItems();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.carrito = this.carritoService.carrito;
+    this.carritoService.getCarritoChanges().subscribe((changesCarrito) => {
+      console.log("GetCarritoChanges en Store->", changesCarrito);
+      this.carrito = changesCarrito;
+    });
+  }
 
   loadItems() {
     setTimeout(() => {
@@ -33,11 +39,11 @@ export class StoreComponent  implements OnInit {
   }
 
   addItemPadre(item: Models.Store.IItem){
-    this.carrito = this.carritoService.carrito;
+    // this.carrito = this.carritoService.carrito;
   }
 
   removeItemPadre(item: Models.Store.IItem){
-    this.carrito = this.carritoService.carrito;
+    // this.carrito = this.carritoService.carrito;
   }
   
   validateInput() {
