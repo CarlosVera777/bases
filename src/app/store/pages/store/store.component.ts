@@ -35,7 +35,8 @@ const DataDemo: Models.Store.IItem[] = [
     name: 'Hamburguesa',
     description: 'Con queso, salsas, papas',
     price: 7.50,
-    image: '/assets/images/hamburguesa.webp'
+    image: '/assets/images/hamburguesa.webp',
+    stock: 0
   },
   {
     id: '0002',
@@ -43,12 +44,14 @@ const DataDemo: Models.Store.IItem[] = [
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero maxime asperiores ex quia, nostrum laboriosam recusandae ea eaque explicabo cupiditate iure quo omnis aliquid beatae soluta odit aliquam. Velit, voluptate.',
     price: 9.50,
     // image: '/assets/images/hamburguesa.webp'
+    stock: 2
   },
   {
     id: '0003',
     name: 'Hamburguesa Doble',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero maxime asperiores ex quia, nostrum laboriosam recusandae ea eaque explicabo cupiditate iure quo omnis aliquid beatae soluta odit aliquam. Velit, voluptate.',
     price: 11.50,
-    image: '/assets/images/hamburguesa.webp'
+    image: '/assets/images/hamburguesa.webp',
+    stock: 10
   }
 ];
