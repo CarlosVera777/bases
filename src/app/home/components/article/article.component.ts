@@ -31,6 +31,7 @@ export class ArticleComponent  implements OnInit {
   }
 
   gotoArticle() {
-    this.router.navigate([`/home/article/${this.article.id}`])
+    this.router.navigate([`/home/article`], { queryParams: { id: this.article.id, b: "Hola mundo" } });
+    // this.router.navigate([`/home/article/${this.article.id}`])
   }
 }

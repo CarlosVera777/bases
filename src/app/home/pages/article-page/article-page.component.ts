@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModelsHome } from 'src/app/models/home.models';
 import { Models } from 'src/app/models/models';
 import { WebService } from 'src/app/services/web.service';
 
@@ -21,6 +20,13 @@ export class ArticlePageComponent  implements OnInit {
       if(params.id){
         console.log('params.id ->', params.id);
         this.loadArticle(params.id);
+      }
+    });
+    this.route.queryParams.subscribe((queryParams:any) => {
+      console.log("QueryParams->", queryParams);
+      
+      if(queryParams.id){
+        this.loadArticle(queryParams.id);
       }
     });
   }
