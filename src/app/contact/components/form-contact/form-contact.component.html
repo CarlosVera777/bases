@@ -1,3 +1,20 @@
-<p>
-  form-contact works!
-</p>
+<p>{{error}}</p>
+
+<div class="content-form">
+  <div class="input-content">
+    <label>Email:</label>
+    <input type="mail" [(ngModel)]="form.email">
+  </div>
+  <div class="input-content">
+    <label>Nombre:</label>
+    <input type="text" [(ngModel)]="form.name">
+  </div>
+  <div class="input-content">
+    <label>Celular:</label>
+    <input type="text" [(ngModel)]="form.phone">
+  </div>
+
+  <div style="text-align: center;">
+    <button (click)="enviar()">Enviar</button>
+  </div>
+</div>

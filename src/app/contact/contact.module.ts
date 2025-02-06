@@ -6,6 +6,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { FormContactComponent } from './components/form-contact/form-contact.component';
 import { SharedModule } from '../shared/shared.module';
 import { IonContent } from '@ionic/angular/standalone';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { IonContent } from '@ionic/angular/standalone';
     CommonModule,
     ContactRoutingModule,
     IonContent,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 
