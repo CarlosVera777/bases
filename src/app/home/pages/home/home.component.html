@@ -4,7 +4,16 @@
     <app-header titulo="Home"></app-header>
 
     <app-detail-carrito></app-detail-carrito>
-    <app-article></app-article>
+    
+    @if(!cargando){
+      @for (itemArticle of articles; track $index) {
+        <app-article [article]="itemArticle"></app-article>
+      } @empty {
+
+      }
+    } @else {
+      <p style="text-align: center;">cargando...</p>
+    }
   
     <app-footer></app-footer>
   </div>

@@ -8,4 +8,11 @@ export namespace ModelsHome {
       }
       id?: string;
   }
+
+  export interface IArticle {
+    title: string;
+    body: string;
+    userId: number;
+    id?: number;
+  }
 }
