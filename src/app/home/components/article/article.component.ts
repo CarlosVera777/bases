@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Models } from 'src/app/models/models';
 
 @Component({
@@ -10,23 +11,26 @@ import { Models } from 'src/app/models/models';
 export class ArticleComponent  implements OnInit {
   @Input() article: Models.Home.IArticle;
   
-  constructor() { 
-    // this.loadArticulo();
+  constructor(
+    private router: Router
+  ) { 
+    console.log("Constructor() ArticleComponent");
+    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("ngOnInit() ArticleComponent");  
+  }
 
-  loadArticulo() {
-  //   const data: any = {
-  //     title: 'Angular [DINAMICO]',
-  //     description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.' +
-  //     'Quae rem maxime ullam enim eveniet magni, sed quo reprehenderit' +
-  //      'perspiciatis assumenda!',
-  //     image: {
-  //       url: '/assets/images/angular-logo.png',
-  //       desc: 'logo de angular'
-  //     } 
-  //   }
-  //   this.article = data;
+  ngOnDestroy() {
+    console.log("ngOnDestroy() ArticleComponent");
+  }
+
+  ngOnChanges() {
+    console.log("ngOnChanges() ArticleComponent");
+  }
+
+  gotoArticle() {
+    this.router.navigate([`/home/article/${this.article.id}`])
   }
 }

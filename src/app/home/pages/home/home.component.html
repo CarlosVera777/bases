@@ -6,8 +6,8 @@
     <app-detail-carrito></app-detail-carrito>
     
     @if(!cargando){
-      @for (itemArticle of articles; track $index) {
-        <app-article [article]="itemArticle"></app-article>
+      @for (articleItem of articles; track $index) {
+        <app-article [article]="articleItem"></app-article>
       } @empty {
 
       }
