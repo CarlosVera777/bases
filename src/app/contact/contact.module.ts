@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IonContent,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule //ok
   ]
 })
 

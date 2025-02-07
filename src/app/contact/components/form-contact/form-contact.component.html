@@ -18,3 +18,53 @@
     <button (click)="enviar()">Enviar</button>
   </div>
 </div>
+
+<h2 style="text-align: center;">Formulario Reactivo</h2>
+
+<div class="conten-form">
+  <form [formGroup]="datosForm" (ngSubmit)="enviarForm()">
+    <!-- email -->
+    <div class="input-content">
+      <label>Email:</label>
+      <input placeholder="Email" formControlName="email">
+      <span style="text-align: end;"
+          *ngIf="datosForm.controls['email'].hasError('required')">
+        <i>Este campo es <strong>requerido</strong></i>
+      </span>
+      <span style="text-align: end;"
+          *ngIf="datosForm.controls['email'].hasError('email')">
+        <i>Ingrese un email <strong>valido</strong></i>
+      </span>
+    </div>
+
+    <!-- nombre -->
+    <div class="input-content">
+      <label>Nombre:</label>
+      <input placeholder="Nombre" formControlName="name">
+      <span style="text-align: end;"
+          *ngIf="datosForm.controls['name'].hasError('required')">
+        <i>Este campo es <strong>requerido</strong></i>
+      </span>
+    </div>
+
+    <!-- telefono -->
+    <div class="input-content">
+      <label>Telefono:</label>
+      <input readonly placeholder="Telefono" formControlName="phone">
+      <span style="text-align: end;"
+          *ngIf="datosForm.controls['phone'].hasError('mal')">
+        <i>Esto esta mal</i>
+      </span>
+    </div>
+
+    <!-- enviar -->
+    <div style="text-align: center;">
+      <button type="submit"
+        [disabled]="cargando">
+        <strong>Enviar</strong>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div style="margin-bottom: 60px;"></div>
