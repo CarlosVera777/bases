@@ -29,19 +29,9 @@ export class HomeComponent  implements OnInit {
     console.log("data->", res);
     if(res) {
       this.articles = res;
-      // this.articles = [];
-      // this.articles.push(res[0]);
-      // setTimeout(() => {
-      //   this.articles[0] = {
-      //     id: 1,
-      //     title: "Hola mundo",
-      //     body: "Esto es una demostracion de Lorem 10 Esto es una demostracion de Lorem 10" +
-      //           "Esto es una demostracion de Lorem 10 Esto es una demostracion de Lorem 10" +
-      //           "Esto es una demostracion de Lorem 10 Esto es una demostracion de Lorem 10" +
-      //           "Esto es una demostracion de Lorem 10 Esto es una demostracion de Lorem 10",
-      //     userId: 1
-      //   }
-      // }, 2000);
+      this.articles.forEach((article) => {
+        article.time = new Date();
+      });
     }
     this.cargando = false;
   }

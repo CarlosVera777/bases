@@ -8,27 +8,23 @@
   <!-- imagen -->
   <div>
     <img src="/assets/images/angular-logo.png" alt="logo angular">
+    <!-- <img [src]="article.image.url" [alt]="article.image.desc"> -->
   </div>
   <!-- titulo -->
   <div class="articulo-titulo">
-    <h2>{{article.title}}</h2>
+    <h2>{{article.title | titlecase | short:"25"}}</h2>
   </div>
   <!-- contenido -->
   <div class="contenido">
-    <p>{{article.body}}</p>
+    <p>{{article.body | short:"100"}}</p>
   </div>
+  <!-- fecha -->
+  <div class="contenido">
+    <p>{{article.time | date:"dd/MM/yyyy"}}</p>
+  </div>
+  <!-- article -->
+  <!-- <div class="contenido">
+    <p>{{article | json}}</p>
+  </div> -->
 </div>
 
-<!-- @if(article){
-  <div class="articulo">
-    <div>
-      <img [src]="article.image.url" [alt]="article.image.desc">
-    </div>
-    <div class="articulo-titulo">
-      <h2>{{article.title}}</h2>
-    </div>
-    <div class="contenido">
-      <p>{{article.description}}</p>
-    </div>
-  </div>
-} -->

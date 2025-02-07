@@ -6,12 +6,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NotificationsModule } from '../notifications/notifications.module';
 import { RouterModule } from '@angular/router';
 import { DetailCarritoComponent } from './components/detail-carrito/detail-carrito.component';
+import { ShortPipe } from './pipes/short.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    DetailCarritoComponent
+    DetailCarritoComponent,
+    ShortPipe
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { DetailCarritoComponent } from './components/detail-carrito/detail-carri
   exports: [
     HeaderComponent,
     FooterComponent,
-    DetailCarritoComponent
+    DetailCarritoComponent,
+    ShortPipe
   ]
 })
 

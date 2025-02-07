@@ -14,5 +14,6 @@ export namespace ModelsHome {
     body: string;
     userId: number;
     id?: number;
+    time?: Date;
   }
 }

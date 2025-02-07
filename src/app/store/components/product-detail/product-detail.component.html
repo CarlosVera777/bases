@@ -8,7 +8,7 @@
     }@else {
       <img src="/assets/images/default.webp">
     }
-    <div> <p style="text-align: end;">${{item.price}}</p> </div>
+    <div> <p style="text-align: end;">{{item.price | currency}}</p> </div>
     <div style="text-align: end;">
       <button (click)="addItemHijo()" class="button-add">+</button>
       <span>{{this.cantxProducto}}</span>
