@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/pages/not-found/not-found.component';
+import { IsAdminGuard } from './shared/guards/is-admin.guard';
 
 export const routes: Routes = [
   {
@@ -20,7 +21,8 @@ export const routes: Routes = [
   },
   {
     path: 'contact',
-    loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule)
+    loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule),
+    canActivate: [IsAdminGuard]
   },
   {
     path: 'demo',
