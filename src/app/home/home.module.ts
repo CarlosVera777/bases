@@ -8,6 +8,7 @@ import { IonContent } from '@ionic/angular/standalone';
 import { SharedModule } from '../shared/shared.module';
 import { ArticlePageComponent } from './pages/article-page/article-page.component';
 import { NotFoundComponent } from '../shared/pages/not-found/not-found.component';
+import { HighlightDirective } from '../shared/directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NotFoundComponent } from '../shared/pages/not-found/not-found.component
     IonContent,
     SharedModule,
     NotFoundComponent,
-]
+    HighlightDirective
+  ]
 })
 
 export class HomeModule { 

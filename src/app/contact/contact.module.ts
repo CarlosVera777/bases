@@ -7,6 +7,7 @@ import { FormContactComponent } from './components/form-contact/form-contact.com
 import { SharedModule } from '../shared/shared.module';
 import { IonContent } from '@ionic/angular/standalone';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HighlightDirective } from '../shared/directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IonContent,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule //ok
+    ReactiveFormsModule, //ok
+    HighlightDirective
   ]
 })
 

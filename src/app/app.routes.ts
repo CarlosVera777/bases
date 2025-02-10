@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadChildren: () => import('./contact/contact.module').then((m) => m.ContactModule)
   },
   {
+    path: 'demo',
+    loadComponent: () => import('./demo/demo.component').then((m) => m.DemoComponent)
+  },
+  {
     path: 'not-found',
     //loadComponent: () => import('./shared/pages/not-found/not-found.component').then((m) => m.NotFoundComponent)
     loadComponent: async () => {
