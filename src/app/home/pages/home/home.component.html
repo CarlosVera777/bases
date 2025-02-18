@@ -1,0 +1,21 @@
+<ion-content>
+ 
+  <div>
+    <app-header titulo="Home"></app-header>
+
+    <app-detail-carrito></app-detail-carrito>
+    
+    @if(!cargando){
+      @for (articleItem of articles; track $index) {
+        <app-article [article]="articleItem"></app-article>
+      } @empty {
+
+      }
+    } @else {
+      <p style="text-align: center;">cargando...</p>
+    }
+  
+    <app-footer></app-footer>
+  </div>
+
+</ion-content>

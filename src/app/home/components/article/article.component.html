@@ -1,0 +1,30 @@
+<div class="articulo"
+  (click)="gotoArticle()"
+  >
+  <!-- [routerLink]="['/home/article']"
+  [queryParams]="{id: article.id}"  -->
+<!-- [routerLink]="['/home/article/' + article.id]" -->
+
+  <!-- imagen -->
+  <div>
+    <img src="/assets/images/angular-logo.png" alt="logo angular">
+    <!-- <img [src]="article.image.url" [alt]="article.image.desc"> -->
+  </div>
+  <!-- titulo -->
+  <div class="articulo-titulo">
+    <h2>{{article.title | titlecase | short:"25"}}</h2>
+  </div>
+  <!-- contenido -->
+  <div class="contenido">
+    <p>{{article.body | short:"100"}}</p>
+  </div>
+  <!-- fecha -->
+  <div class="contenido">
+    <p>{{article.time | date:"dd/MM/yyyy"}}</p>
+  </div>
+  <!-- article -->
+  <!-- <div class="contenido">
+    <p>{{article | json}}</p>
+  </div> -->
+</div>
+
