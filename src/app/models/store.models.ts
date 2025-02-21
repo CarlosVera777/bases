@@ -1,6 +1,7 @@
 export namespace ModelsStore {
     export interface IItem {
         id?: string;
+        date?: Date;
         name: string;
         description: string;
         price: number;
