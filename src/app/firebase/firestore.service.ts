@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { addDoc, collection, doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { addDoc, arrayRemove, arrayUnion, collection, doc, increment, 
+         serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class FirestoreService {
 
   // CRUD: Create - Read - Update - Delete
   // QUERY
+
+  //---| CREATE |---//
   async createDocumentDemo() {
     //1. Crear documento con Id especifico
     //const refDoc = doc(this.firestore, "cities/LA"); //1a.Nuevo
@@ -53,7 +56,6 @@ export class FirestoreService {
     await setDoc(refDoc3, data3);
     console.log("CreateDocument");
   }
-
   async createDocument<tipo>(path: string, data: tipo){
     const refCollection = collection(this.firestore, path);
     const refDoc = doc(refCollection);
@@ -62,5 +64,52 @@ export class FirestoreService {
     dataDoc.date = serverTimestamp();
 
     return await setDoc(refDoc, dataDoc);
+  }
+
+  //---| UPDATE |---//
+  async updateDocumentDemo() {
+    const refDoc1a = doc(this.firestore, "cities/LA");
+    // const refDoc1b = doc(this.firestore, "cities", "LA");
+    const data: any = {
+      //name: "Los Angeles",
+      //state: "CA",
+      country: "USA",
+      updateAt: serverTimestamp()
+    }
+    await updateDoc(refDoc1a, data);
+
+    //1. Actualiza los campos en objetos anidados
+    // {
+    //   name: "Frank",
+    //   favorities: { food: "Pizza", color: "blue", subject: "recess" },
+    //   age: 12
+    // }
+    const data1: any = {
+      "favorities.color": "red"
+    }
+
+    //2.Actualizar elementos de un Array
+    const data2: any = {
+      name: "Los Angeles",
+      state: "CA",
+      country: "USA",
+      // regions: ["region1", "region2"]
+      // regions: arrayUnion("regionNuevaX"), //Add
+      regions: arrayRemove("regionExistente") //remove
+    }
+
+    //3.Incrementar un valor numerico
+    const data3: any = {
+      populations: increment(50)  //Incrementar
+    }
+
+    // await updateDoc(refDoc1a, data1);
+  }
+
+  async updateDocument<tipo>(path: string, data: any) {
+    const refDoc = doc(this.firestore, path);
+    data.updateAt = serverTimestamp();
+    
+    return await updateDoc(refDoc, data);
   }
 } 
