@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
-import { addDoc, arrayRemove, arrayUnion, collection, doc, increment, 
+import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDocs, increment, 
          serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
   constructor(
-    private firestore: Firestore
+    private firestore: Firestore,
   ) { 
     console.log("FirestoreService");
-    // this.createDocumentDemo();
+    //this.createDocumentDemo();
   }
 
   // CRUD: Create - Read - Update - Delete
@@ -105,11 +105,43 @@ export class FirestoreService {
 
     // await updateDoc(refDoc1a, data1);
   }
-
   async updateDocument<tipo>(path: string, data: any) {
     const refDoc = doc(this.firestore, path);
     data.updateAt = serverTimestamp();
     
     return await updateDoc(refDoc, data);
+  }
+
+  //---| DELETE |---//
+  async deleteDocumentDemo() {
+    const refDoc = doc(this.firestore, "");
+    await deleteDoc(refDoc);
+  }
+
+  async deleteDocument(path: string) {
+    const refDoc = doc(this.firestore, path);
+    return await deleteDoc(refDoc);
+  }
+
+  //
+  async deleteDocumentAndSubcollections(parentPath: string, subcollectionName: string) {
+    try {
+      const subcollectionRef = collection(this.firestore, `${parentPath}/${subcollectionName}`);
+
+      // 1. Obtener y eliminar todos los documentos de la subcolección
+      const subcollectionSnapshot = await getDocs(subcollectionRef);
+      if (!subcollectionSnapshot.empty) {
+        const deletePromises = subcollectionSnapshot.docs.map(docSnap => deleteDoc(docSnap.ref));
+        await Promise.all(deletePromises);
+        console.log(`Subcolección '${parentPath}/${subcollectionName}' eliminada.`);
+      }
+
+      // 2. Eliminar el documento padre
+      const parentDocRef = doc(this.firestore, parentPath);
+      await deleteDoc(parentDocRef);
+      console.log(`Documento '${parentPath}' eliminado.`);
+    } catch (error) {
+      console.error("Error al eliminar documento y subcolecciones:", error);
+    }
   }
 } 

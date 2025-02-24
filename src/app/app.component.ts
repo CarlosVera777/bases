@@ -2,7 +2,7 @@ import { Models } from 'src/app/models/models';
 import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import { FirestoreService } from './firebase/firestore.service';
-import { increment } from 'firebase/firestore';
+import { deleteField, increment } from 'firebase/firestore';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,9 @@ export class AppComponent {
   constructor(
     private firestoreService: FirestoreService
   ) {
-    this.updateProduct();
+    this.deleteProduct();
+    //this.deleteProduct_Document_And_SubCollections();
   }
-
   async saveproduct(){
     console.log("saveDoc()");
     const data: Models.Store.IItem = {
@@ -35,15 +35,14 @@ export class AppComponent {
       console.log("Error al guardar");
     }
   }
-
   async updateProduct() {
     console.log("UpdateProduct()");
     // const path = "Products" + "/" + "id";
     //const path = "Products/4HfxSTHnhuwrI4r8CZkd";
-    const path = "";
+    const path = "Products/4HfxSTHnhuwrI4r8CZkd";
     const updateDoc = {
       stock: increment(10),
-      price: 5.25
+      price: deleteField() //Borrar campo
     }
     
     try{
@@ -51,6 +50,27 @@ export class AppComponent {
       console.log("Actualizado con Exito!");
     }catch(error){
       console.log("Error al actualizar");
+    }
+  }
+  async deleteProduct() {
+    console.log("DeleteCitie()");
+    const path = "cities2/RRDQTLTGM7x4QIJQIkyn"; // BorrarDocumento
+    try{
+      await this.firestoreService.deleteDocument(path);
+      console.log("Eliminado con Exito!");
+    }catch(error){
+      console.log("Error al eliminar");
+    }
+  }
+  async deleteProduct_Document_And_SubCollections() {
+    console.log("DeleteCity()");
+    try{
+      const path: string = "cities2/OjaRaDXEoVyEYYtHzPwo";
+      const subcollection = "items";
+      await this.firestoreService.deleteDocumentAndSubcollections(path, subcollection);
+      console.log("Collection y SubCollections Eliminado con Exito!");
+    }catch(error){
+      console.log("Error al eliminar");
     }
   }
 }
